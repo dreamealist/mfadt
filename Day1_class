@@ -1,0 +1,53 @@
+void setup()  {
+    size (500, 500);
+    
+}
+
+void draw() {
+  
+    background(149, 212, 213);
+    
+    rectMode(CENTER);
+    fill(255, 255, 255);
+    stroke(53, 34, 34);
+    strokeWeight(5);
+    noFill();
+    rect(width/2, height/2, 425, 425);
+    
+    //head circle
+    
+    noStroke();
+    fill(255);
+    ellipse(width/2, height/2, 200, 200);
+    ellipse(width/2, (height/2)+60, 150, 150);
+    
+    //spots!
+    
+    fill(95, 231, 179);
+    ellipse((width/2)-55, (height/2)-20, 75, 50);
+    ellipse(width/2, (height/2)+60, 75, 110);
+    
+    //eye circles
+    
+    fill(53, 34, 34);
+    if (mousePressed) {
+      fill(255);
+    }
+    ellipse((width/2)-45, (height/2)-20, 20, 20);
+    ellipse((width/2)+45, (height/2)-20, 20, 20);
+   
+    
+    //nose
+    
+    ellipse(width/2, (height/2)+30, 50, 50);
+   
+    //ears
+ 
+   fill(220, 230, 0);
+   triangle((width/2)-92, (height/2)-40, (width/2)-40, (height/2)-92, (width/2)-150, (height/2)-100);
+   triangle((width/2)+92, (height/2)-40, (width/2)+40, (height/2)-92, (width/2)+150, (height/2)-100);
+   
+   fill(230, 255, 0);
+   triangle((width/2)-150, (height/2)-100, (width/2)-80, (height/2)-94, (width/2)-170, (height/2)-60);
+   triangle((width/2)+150, (height/2)-100, (width/2)+80, (height/2)-94, (width/2)+170, (height/2)-60);
+}
