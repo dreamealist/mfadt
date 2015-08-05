@@ -1,0 +1,21 @@
+PFont titleFont, lowerFont;
+
+void setup() {
+  
+  size(500, 500);
+  background(255);
+  
+  titleFont = loadFont("Serif-48.vlw");
+  lowerFont = loadFont("SansSerif-48.vlw");
+}
+
+void draw() {
+  fill(0);
+ textFont(titleFont, 42);
+ text("This is the title!", 100, 100);
+ 
+ textFont(lowerFont, 14);
+ 
+ text("This is the paragraph part", 100, 400);
+ 
+}
