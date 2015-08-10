@@ -1,0 +1,33 @@
+float rotateAngle = 0.75;
+float rotateAngleInc = 0.001;
+int xOffset = 20;
+float angleInc = 20.85;
+float multipler = 3;
+int circleCount = 1000;
+int bubbleSize = 10; // lower value will make the bubbles bigger.
+ 
+void setup()
+{
+  size(500, 500);
+  smooth();
+  noStroke();
+  frameRate(24);
+}
+ 
+void draw()
+{
+  background(225, 74, 137);
+  int angle = 0;
+  translate(width/2, height/2);
+  for (float i = 0; i < circleCount; i+=1)
+  {
+    rotate(rotateAngle);
+    color c1 = color(random(38, 222), random(200, 238), random(50, 238), map(i, 0, circleCount, 255, 0));
+    fill(c1);
+    ellipse(i*multipler/8+xOffset, 0, sin(radians(angle))+angle/bubbleSize, cos(radians(angle))+angle/bubbleSize);
+    if (angle < 200) angle+=angleInc;
+    else angle = 0;
+  }
+  if (rotateAngle <= 360) rotateAngle+=rotateAngleInc;
+  else rotateAngle = 0;
+}
