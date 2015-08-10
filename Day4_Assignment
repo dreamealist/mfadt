@@ -1,0 +1,73 @@
+Spot[] sp = new Spot[60];
+PImage flower1;
+PImage flower2;
+PImage flower3;
+
+
+void setup() {
+  size(800, 600);
+  imageMode(CENTER);
+  flower1 = loadImage("flower1.png");
+  for (int i = 0; i < sp.length; i++) {
+    sp[i] = new Spot(random(width), random(height), random(0.2,1.0), random(0.1,1.0));
+  smooth();
+  noStroke();
+  frameRate(24);
+  flower1 = loadImage("flower1.png");
+  flower2 = loadImage("flower2.png");
+  flower3 = loadImage("flower3.png");
+}
+}
+
+
+void draw() {
+  background(255);
+  for (int i = 0; i < sp.length; i++) {
+    sp[i].move();
+    sp[i].display();
+
+  image(flower1, 10, height/4, flower1.width/4, flower1.height/4);
+  image(flower2, 20, height/2, flower2.width/2, flower2.height/2);
+  image(flower3, 40, height/6, flower3.width/6, flower3.height/6);
+  image(flower1, 60, height/8, flower1.width/8, flower1.height/8);
+  image(flower2, 80, height/4, flower2.width/4, flower2.height/4);
+  image(flower3, 100, height/8, flower3.width/4, flower3.height/4);
+  image(flower1, 120, height/10, flower1.width/10, flower1.height/10);
+  image(flower2, 150, height/20, flower2.width/15, flower2.height/15);
+  image(flower3, 200, height/10, flower3.width/10, flower3.height/10);
+  image(flower1, 300, height/10, flower1.width/10, flower1.height/10);
+  image(flower2, 400, height/20, flower2.width/10, flower2.height/10);
+  image(flower3, 600, height/20, flower3.width/20, flower3.height/20);
+  }
+}
+
+class Spot {
+  float x, y, diameter, speed; 
+  
+  Spot(float _x, float _y, float _diameter, float _speed) {
+    x = _x;
+    y = _y;
+    diameter = _diameter;
+    speed = _speed;
+  }
+  
+  void move() {
+    speed *= 2.2;
+    y -= speed;
+    if (y < - flower1.width*diameter/2) {
+      x = random(width);
+      y = height + flower2.width*diameter/2;
+      speed = random(0.5,3);
+      }
+  }
+  
+  void display() {
+    pushMatrix();
+    translate(x, y);
+    rotate(TWO_PI*diameter);
+    scale(diameter);
+    //tint(255, 255, 255, 153);
+    image(flower1, 0, 0);
+    popMatrix();
+  }
+}
