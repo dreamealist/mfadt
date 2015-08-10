@@ -1,0 +1,52 @@
+int countX = 20; //number of Gridpoints in X-Direction
+int countY = 20; //number of Gridpoints in Y-Direction
+int scaleFactor = 60; //factor for regulating the influence of the attraktor-point (mousePosition) on the size of the rectangles
+float stepWX;
+float stepWY;
+
+void setup()
+{
+  size( 600, 600 );
+  background( 103, 80, 255 );
+  rectMode( CENTER );
+  stroke(5, 100);
+  fill(55, 222, 43);
+  
+  stepWX = width/countX;
+  stepWY = height/countY;
+}
+
+void draw()
+{
+  background( 103, 80, 255 );
+
+
+  translate(stepWX/2, stepWY/2);
+
+
+  //draw Grid
+  for ( int i=0; i < countX; i++ ) //first for-loop for x-direction
+  {
+    for ( int j=0; j < countY; j++ ) //second for-loop for y-direction
+    {
+      //draw pattern
+      drawPattern(i*stepWX, j*stepWY);
+    }
+  }
+
+
+}
+
+void drawPattern(float posX, float posY)
+{
+  float distance = dist( posX, posY, mouseX, mouseY );
+float openness = distance / scaleFactor; //relate the "openness" of the pattern to distance
+
+  if (openness > stepWX/8)
+    openness = stepWX/4;
+  
+  triangle(posX-stepWX/2, posY-stepWY/2, posX-openness, posY, posX, posY-openness);
+  triangle(posX+stepWX/2, posY-stepWY/2, posX+openness, posY, posX, posY-openness);
+  triangle(posX-stepWX/2, posY+stepWY/2, posX-openness, posY, posX, posY+openness);
+  triangle(posX+stepWX/2, posY+stepWY/2, posX+openness, posY, posX, posY+openness);
+}
