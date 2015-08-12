@@ -1,0 +1,92 @@
+int numCircles = 100;
+float[] circleX = new float[numCircles]; // declaring & creating two arrays with 1000 elements in each, which at this point are not yet defined
+float[] circleY = new float[numCircles];
+
+
+void setup() {
+  size(500, 500);
+  smooth();
+  noStroke();
+  for (int i = 0; i < numCircles; i++) {
+    circleX[i] = random(0, width); // set as a random x value on the screen
+    circleY[i] = random(0, height); // set as a random y value  on the screen
+  setRandomValues ();
+  }
+}
+
+void draw() {
+  background(0);
+  noStroke();
+  for (int i=0; i < circleX.length; i++) {
+       
+    fill(random(0, 255), i/4, 100);            // color will change for each circle based on the index, too
+    ellipse(circleX[i], circleY[i], 30, 30);
+    println(circleX[i]);
+     drawConnections();
+     drawValues();
+  }
+}
+ 
+void drawConnections ()
+{
+  int i = 0;
+ 
+  while (i < circleX.length)
+  {
+    float x1 = circleX [i];
+    float y1 = circleY [i];
+ 
+    int j = i+1;
+ 
+    while (j < circleX.length)
+    {
+      float x2 = circleY [j];
+      float y2 = circleX [j];
+ 
+      float distance = dist (x1, y1, x2, y2);
+ 
+      if (distance > 10 && distance < 60)
+      {
+        line (x1, y1, x2, y2);
+      }
+ 
+      j = j +1;
+    }
+ 
+    i = i +1;
+  }
+}
+ 
+void drawValues ()
+{
+  int i = 0;
+  while (i < circleX.length)
+  {
+    float x = circleX [i];
+    float y = circleY [i];
+ 
+    ellipse (x, y, 20, 20);
+ 
+    i = i +1;
+  }
+}
+ 
+void setRandomValues ()
+{
+  int i = 0;
+  while (i < circleX.length)
+  {
+    float x = random (width);
+    float y = random (height);
+ 
+    circleX [i] = x;
+    circleY [i] = y;
+    i = i +1;
+  }
+}
+ 
+ 
+void mouseMoved ()
+{
+  setRandomValues ();
+}
